@@ -7,7 +7,7 @@ description = """Rust library for writing HTTP integration tests.
   and send back your own response."""
 repository = "https://github.com/bitex-la/rust-http-stub"
 keywords = ["http", "test", "spec", "api", "web"]
-license = "MIT or WTFPL"
+license = "WTFPL"
 
 [dependencies]
 hyper = "^0.8"
