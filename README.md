@@ -19,7 +19,7 @@ send your pull request.
 
 ## Installation
     [dependencies]
-    http_stub = "0.8"
+    http_stub = "0.1"
 
 ## What does it look like?
 
