@@ -27,18 +27,23 @@
 //!   // for example: http://127.0.0.1:3001
 //!   // It's fixed to listen on 127.0.0.1 and it will use up ports counting up from
 //!   // port 3000, each new server will use the next port to make sure there are
-//!   // no conflicts.
+//!   // no port conflicts. This does mean you should not be using those ports too.
 //!   let server_one: String = HttpStub::run(|mut stub|{
 //!     stub.got_body(r"foo=bar");
 //!     stub.got_path("/a_post");
 //!     stub.got_method(Method::Post);
 //!     stub.send_status(StatusCode::NotFound);
 //!     stub.send_header(ContentType(Mime(TopLevel::Application, SubLevel::Json, vec![])));
+//!
+//!     // send_body should always be the last step. It writes the response body and sends it.
+//!     // Rendering the 'response' field of the HttpStub unusable.
 //!     stub.send_body("number one");
 //!   });
 //!
 //!   let server_two = HttpStub::run(|mut stub|{
-//!     stub.got_path("/a_get?foo=bar");
+//!     // Notice all search strings are actually used for creating a regex.
+//!     // That's why we escape the '?' when matching for the path.
+//!     stub.got_path(r"/a_get\?foo=bar");
 //!     stub.got_method(Method::Get);
 //!     stub.send_status(StatusCode::Ok);
 //!     stub.send_header(ContentType(Mime(TopLevel::Application, SubLevel::Json, vec![])));
@@ -61,11 +66,6 @@
 //! }
 //! ```
 
-#![feature(custom_derive, plugin)]
-#![plugin(serde_macros)]
-
-extern crate serde;
-extern crate serde_json;
 extern crate hyper;
 extern crate regex;
 
@@ -132,7 +132,10 @@ impl <'a, 'b: 'a, 'c> HttpStub<'a, 'b, 'c> {
 
   /// Assert request's path matches your expectation.
   pub fn got_path(&self, path: &str){
-    assert_eq!(self.request.uri, Uri::AbsolutePath(path.to_string()));
+    match self.request.uri.clone() {
+      Uri::AbsolutePath(got) => { HttpStub::assert_match(&got, path) }
+      _ => { panic!("Was not absolute path") }
+    }
   }
 
   /// Assert request's header "header_name" matches the given "value".
@@ -169,6 +172,7 @@ impl <'a, 'b: 'a, 'c> HttpStub<'a, 'b, 'c> {
 
   fn assert_match(haystack: &str, needle: &str){
     let re = Regex::new(needle).unwrap();
-    assert!(re.is_match(&haystack));
+    assert!(re.is_match(&haystack),
+      format!("regex {} did not match text {}", needle, haystack));
   }
 }

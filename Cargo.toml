@@ -1,17 +1,16 @@
 [package]
 name = "http_stub"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Nubis <yo@nubis.im>"]
-description = """Rust library for writing HTTP integration tests. 
-  Create ad-hoc web servers, make assertions on the request 
-  and send back your own response."""
+description = """
+  Actual web servers,
+  testing the full stack.
+  Assert on the request,
+  and send a response back."""
 repository = "https://github.com/bitex-la/rust-http-stub"
 keywords = ["http", "test", "spec", "api", "web"]
 license = "WTFPL"
 
 [dependencies]
 hyper = "^0.8"
-serde = "^0.7"
-serde_json = "0.7.0"
-serde_macros = "0.7.2"
 regex = "0.1.6"
