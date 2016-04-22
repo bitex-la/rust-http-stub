@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-18' class='srclink' href='../src/http_stub/src/lib.rs.html#88-92' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-20' class='srclink' href='../src/http_stub/src/lib.rs.html#98-102' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct HttpStub&lt;'a, 'b, 'c&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>The entry point.
@@ -69,7 +69,7 @@ Value is compiled as a regex so you can provide a pattern.</p>
 Value is compiled as a regex so you can provide a pattern.</p>
 </div><h4 id='method.send_status' class='method'><code>fn <a href='#method.send_status' class='fnname'>send_status</a>(&amp;mut self, status: <a class='enum' href='../http_stub/enum.StatusCode.html' title='http_stub::StatusCode'>StatusCode</a>)</code></h4>
 <div class='docblock'><p>Respond with the given StatusCode</p>
-</div><h4 id='method.send_header' class='method'><code>fn <a href='#method.send_header' class='fnname'>send_header</a>&lt;H: <a class='trait' href='https://hyperium.github.io/hyper/hyper/header/trait.Header.html' title='hyper::header::Header'>Header</a> + <a class='trait' href='https://hyperium.github.io/hyper/hyper/header/trait.HeaderFormat.html' title='hyper::header::HeaderFormat'>HeaderFormat</a>&gt;(&amp;mut self, header: H)</code></h4>
+</div><h4 id='method.send_header' class='method'><code>fn <a href='#method.send_header' class='fnname'>send_header</a>&lt;H: <a class='trait' href='../http_stub/header/trait.Header.html' title='http_stub::header::Header'>Header</a> + <a class='trait' href='../http_stub/header/trait.HeaderFormat.html' title='http_stub::header::HeaderFormat'>HeaderFormat</a>&gt;(&amp;mut self, header: H)</code></h4>
 <div class='docblock'><p>Add a header to the response. (Call as many times as you want).</p>
 </div><h4 id='method.send_body' class='method'><code>fn <a href='#method.send_body' class='fnname'>send_body</a>(self, body: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
 <div class='docblock'><p>Sends the response and closes the stream. Pass an empty string

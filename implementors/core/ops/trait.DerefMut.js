@@ -1,0 +1,10 @@
+(function() {var implementors = {};
+implementors['http_stub'] = ["impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='http_stub/header/struct.AccessControlAllowMethods.html' title='http_stub::header::AccessControlAllowMethods'>AccessControlAllowMethods</a>","impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='http_stub/header/struct.AccessControlMaxAge.html' title='http_stub::header::AccessControlMaxAge'>AccessControlMaxAge</a>","impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='http_stub/header/struct.AccessControlExposeHeaders.html' title='http_stub::header::AccessControlExposeHeaders'>AccessControlExposeHeaders</a>","impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='http_stub/header/struct.Accept.html' title='http_stub::header::Accept'>Accept</a>","impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='http_stub/header/struct.AccessControlRequestHeaders.html' title='http_stub::header::AccessControlRequestHeaders'>AccessControlRequestHeaders</a>","impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='http_stub/header/struct.AccessControlAllowHeaders.html' title='http_stub::header::AccessControlAllowHeaders'>AccessControlAllowHeaders</a>",];
+
+            if (window.register_implementors) {
+                window.register_implementors(implementors);
+            } else {
+                window.pending_implementors = implementors;
+            }
+        
+})()
