@@ -8,13 +8,19 @@
 //! #  Examples
 //!
 //! ```
-//! extern crate hyper;
 //! extern crate http_stub;
+//! extern crate hyper;
 //!
-//! use self::http_stub::*;
+//! // Your client HTTP code will likely be using hyper too so
+//! // this is the recommended way to use http_stub to avoid
+//! // name clashing.
+//! use self::http_stub as hs;
+//! use self::http_stub::HttpStub;
+//! 
+//! // These modules are for the actual code we're writing and testing.
 //! use std::io::Read;
-//! use self::hyper::client::Client;
-//! use self::hyper::header::ContentType;
+//! use hyper::client::Client;
+//! use hyper::status::StatusCode;
 //! 
 //! fn body_to_string<R: Read>(mut readable: R) -> String{
 //!   let ref mut body = vec![];
@@ -31,9 +37,10 @@
 //!   let server_one: String = HttpStub::run(|mut stub|{
 //!     stub.got_body(r"foo=bar");
 //!     stub.got_path("/a_post");
-//!     stub.got_method(Method::Post);
-//!     stub.send_status(StatusCode::NotFound);
-//!     stub.send_header(ContentType(Mime(TopLevel::Application, SubLevel::Json, vec![])));
+//!     stub.got_method(hs::Method::Post);
+//!     stub.send_status(hs::StatusCode::NotFound);
+//!     stub.send_header(hs::header::ContentType(
+//!       hs::Mime(hs::TopLevel::Application, hs::SubLevel::Json, vec![])));
 //!
 //!     // send_body should always be the last step. It writes the response body and sends it.
 //!     // Rendering the 'response' field of the HttpStub unusable.
@@ -44,9 +51,10 @@
 //!     // Notice all search strings are actually used for creating a regex.
 //!     // That's why we escape the '?' when matching for the path.
 //!     stub.got_path(r"/a_get\?foo=bar");
-//!     stub.got_method(Method::Get);
-//!     stub.send_status(StatusCode::Ok);
-//!     stub.send_header(ContentType(Mime(TopLevel::Application, SubLevel::Json, vec![])));
+//!     stub.got_method(hs::Method::Get);
+//!     stub.send_status(hs::StatusCode::Ok);
+//!     stub.send_header(hs::header::ContentType(
+//!       hs::Mime(hs::TopLevel::Application, hs::SubLevel::Json, vec![])));
 //!     stub.send_body("number two");
 //!   });
 //!
@@ -66,12 +74,14 @@
 //! }
 //! ```
 
-extern crate hyper;
-extern crate regex;
+pub extern crate hyper;
+pub extern crate regex;
 
 pub use self::hyper::method::Method;
 pub use self::hyper::status::StatusCode;
 pub use hyper::mime::{Mime, TopLevel, SubLevel};
+pub use self::hyper::header as header;
+pub use self::hyper::mime as mime;
 use self::hyper::header::{Header, HeaderFormat};
 use hyper::Server as HyperServer;
 use hyper::server::Request as HyperRequest;
