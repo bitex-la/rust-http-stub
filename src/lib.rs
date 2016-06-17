@@ -96,8 +96,8 @@ use regex::Regex;
 /// Associated functions can create new servers,
 /// instances can make assertions and return headers, status and a body.
 pub struct HttpStub <'a, 'b: 'a, 'c> {
-  request: HyperRequest<'a, 'b>,
-  response: HyperResponse<'c>,
+  pub request: HyperRequest<'a, 'b>,
+  pub response: HyperResponse<'c>,
   request_body: String
 }
 
